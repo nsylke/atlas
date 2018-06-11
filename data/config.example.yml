@@ -1,0 +1,23 @@
+# The mode will define the version extension
+mode: 'stable'
+
+# The default prefix the bot uses
+prefix: ''
+
+# The client id of the bot
+client_id: ''
+
+# The token of the bot
+token: ''
+
+# MySQL database information
+database:
+  host: ''
+  user: ''
+  pass: ''
+  name: ''
+
+# Authorization tokens for various discord bot lists
+tokens:
+  discordbots_org: ''
+  discord_pw: ''
