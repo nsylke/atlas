@@ -10,13 +10,6 @@ require_relative 'ext/string'
 module Kernel
     @start_time = Time.now
 
-    def run_supressed(&block)
-        original_verbosity = $VERBOSE
-        $VERBOSE = nil
-        yield block
-        $VERBOSE = original_verbosity
-    end
-
     def uptime(short = false)
         secs = (Time.now - @start_time).to_i
         days = secs / 86400
@@ -59,23 +52,6 @@ module Kernel
 end
 
 module Atlas
-    # # Initialize logger
-    # run_supressed { Discordrb::LOG_TIMESTAMP_FORMAT = '%Y-%m-%d %H:%M:%S' }
-
-    # # Enable debug mode if started with `ruby run.rb -d`
-    # debug = ARGV.include?('-d') ? :debug : false
-    # log_streams = [STDOUT]
-
-    # if debug 
-    #     timestamp = Time.now.strftime(Discordrb::LOG_TIMESTAMP_FORMAT.tr(':', '-'))
-    #     log_file = File.new("#{Dir.pwd}/logs/#{timestamp}.log", 'a+')
-    #     log_streams.push(log_file)
-    # end
-
-    # run_supressed { LOGGER = Discordrb::LOGGER = Discordrb::Logger.new(nil, log_streams) }
-
-    # LOGGER.debug = true if debug
-
     # Load modules
     Dir["#{File.dirname(__FILE__)}/atlas/*.rb"].each { |f| require_relative f }
     Dir["#{File.dirname(__FILE__)}/integrations/*.rb"].each { |f| require_relative f }
