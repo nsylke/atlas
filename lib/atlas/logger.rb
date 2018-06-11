@@ -6,8 +6,10 @@ module Atlas
 			@output = STDOUT
 		end
 
-		def info(message)
-			log(message)
+		def info(message, event = nil)
+			return log("[INFO : atlas] #{message}") if event.nil?
+
+			log("[INFO : atlas] [#{event}] #{message}")
 		end
 
 		def log(messages)
