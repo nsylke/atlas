@@ -17,6 +17,7 @@ module Atlas::Commands
 
             amount = args.to_i.clamp(2, 100)
             event.channel.prune(amount)
+            event.respond("Pruned #{amount} messages.")
 		end
 	end
 end
