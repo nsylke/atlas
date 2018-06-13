@@ -8,6 +8,7 @@ module Atlas
         Dir["#{File.dirname(__FILE__)}/commands/integration/*.rb"].each { |c| load c }
         Dir["#{File.dirname(__FILE__)}/commands/miscellaneous/*.rb"].each { |c| load c }
         Dir["#{File.dirname(__FILE__)}/commands/moderation/*.rb"].each { |c| load c }
+        Dir["#{File.dirname(__FILE__)}/commands/utility/*.rb"].each { |c| load c }
 
         # Pre-register commands
         @fun = [
@@ -37,7 +38,6 @@ module Atlas
             Home,
             Invite,
             Ping,
-            Server,
             Servers,
             Subscribe,
             Suggestion,
@@ -63,6 +63,10 @@ module Atlas
             Prune,
             Settings,
             Unban
+        ]
+
+        @utility = [
+            Server,
         ]
 
         # Register commands
@@ -104,6 +108,14 @@ module Atlas
             end
 
             logger.debug "Registered #{@moderation.count} moderation commands."
+        end
+
+        def self.registerUtilityCommands!
+            @utility.each do |c|
+                Atlas::BOT.include!(c)
+            end
+
+            logger.debug "Registered #{@utility.count} utility commands."
         end
     end
 end
