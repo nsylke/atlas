@@ -79,9 +79,6 @@ module Atlas
             if args[1] == 'stable'
                 event.respond('Restarting Atlas...')
                 exec('pm2 restart Atlas')
-            elsif args[1] == 'beta'
-                event.respond('Restarting Atlas Beta...')
-                exec('pm2 restart Beta')
             else
                 event.respond('Invalid command action.')
             end
