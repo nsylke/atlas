@@ -43,12 +43,7 @@ module Atlas
     ### TODO: Clean this up
     Events.include!
     logger.info "Successfully loaded events."
-    Commands.registerFunCommands!
-    Commands.registerGeneralCommands!
-    Commands.registerIntegrationCommands!
-    Commands.registerMiscellaneousCommands!
-    Commands.registerModerationCommands!
-    Commands.registerUtilityCommands!
+    Commands.register!
     logger.info "Successfully loaded commands."
     ###
 

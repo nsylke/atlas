@@ -64,53 +64,19 @@ module Atlas
             User
         ]
 
-        # Register commands
-        def self.registerFunCommands!
-            @fun.each do |c|
-                Atlas::BOT.include!(c)
+        def self.register!
+            # Probably a better way of doing this
+            all.each do |mod|
+                Atlas::BOT.include!(mod)
             end
 
-            logger.debug "Registered #{@fun.count} fun commands."
+            logger.debug "Registered #{all.count} commands."
         end
 
-        def self.registerGeneralCommands!
-            @general.each do |c|
-                Atlas::BOT.include!(c)
-            end
+        private
 
-            logger.debug "Registered #{@general.count} general commands."
-        end
-
-        def self.registerIntegrationCommands!
-            @integration.each do |c|
-                Atlas::BOT.include!(c)
-            end
-
-            logger.debug "Registered #{@integration.count} integration commands."
-        end
-
-        def self.registerMiscellaneousCommands!
-            @miscellaneous.each do |c|
-                Atlas::BOT.include!(c)
-            end
-
-            logger.debug "Registered #{@miscellaneous.count} miscellaneous commands."
-        end
-
-        def self.registerModerationCommands!
-            @moderation.each do |c|
-                Atlas::BOT.include!(c)
-            end
-
-            logger.debug "Registered #{@moderation.count} moderation commands."
-        end
-
-        def self.registerUtilityCommands!
-            @utility.each do |c|
-                Atlas::BOT.include!(c)
-            end
-
-            logger.debug "Registered #{@utility.count} utility commands."
+        def self.all
+            @fun + @general + @integration + @miscellaneous + @moderation + @utility
         end
     end
 end
