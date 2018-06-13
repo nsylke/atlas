@@ -2,7 +2,7 @@ module Atlas::Commands
     module Subscribe
         extend Discordrb::Commands::CommandContainer
 
-        command(:subscribe) do |event|
+        command([:subscribe, :sub]) do |event|
             return if event.author.bot_account?
             break unless event.server.id == 443426973025304576
 
