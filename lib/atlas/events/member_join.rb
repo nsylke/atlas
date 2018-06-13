@@ -3,10 +3,10 @@ module Atlas::Events
         extend Discordrb::EventContainer
 
         member_join do |event|
-            break unless event.server.id == 443426973025304576
+            # break unless event.server.id == 443426973025304576
 
-            role = event.server.role(443485098722066432)
-            event.user.add_role role
+            # role = event.server.role(443485098722066432)
+            # event.user.add_role role
             
             # Atlas::DATABASE.query("SELECT autorole FROM servers WHERE id = #{event.server.id}").each do |row|
             #     unless row['autorole'].nil?
