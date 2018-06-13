@@ -36,10 +36,12 @@ module Atlas
 
     ### TODO: Clean this up
     Events.include!
+    logger.info "Successfully loaded events."
     Commands.registerFunCommands!
     Commands.registerGeneralCommands!
     Commands.registerIntegrationCommands!
     Commands.registerModerationCommands!
+    logger.info "Successfully loaded commands."
     ###
 
     at_exit do
