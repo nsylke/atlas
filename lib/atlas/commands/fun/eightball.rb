@@ -2,8 +2,13 @@ module Atlas::Commands
     module Eightball
         extend Discordrb::Commands::CommandContainer
 
-        command([:eightball, :'8ball']) do |event|
+        command([:eightball, :'8ball']) do |event, *args|
             return if event.author.bot_account?
+
+            if args[0].nil?
+                event.respond('No arguments specified.')
+                break
+            end
 
             event.respond(answers[rand(answers.size)])
         end
