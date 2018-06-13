@@ -18,7 +18,6 @@ module Atlas
             Faces,
             Flip,
             Jokes,
-            Lmgtfy,
             Nato,
             Random,
             Reverse,
@@ -47,6 +46,7 @@ module Atlas
         ]
 
         @integration = [
+            Lmgtfy,
             Urban,
             Xkcd
         ]
