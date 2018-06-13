@@ -15,9 +15,9 @@ module Atlas
         ]
 
         # Register events
-        def self.include!
-            @events.each do |e|
-                Atlas::BOT.include!(e)
+        def self.register!
+            @events.each do |mod|
+                Atlas::BOT.include!(mod)
             end
 
             logger.debug "Registered #{@events.count} events."

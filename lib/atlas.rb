@@ -41,7 +41,7 @@ module Atlas
     STATS = Stats.new
 
     ### TODO: Clean this up
-    Events.include!
+    Events.register!
     logger.info "Successfully loaded events."
     Commands.register!
     logger.info "Successfully loaded commands."
