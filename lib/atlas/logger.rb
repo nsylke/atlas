@@ -1,21 +1,7 @@
 module Atlas
-	class Logger
-		attr_reader :output
+	module AtlasLogger
+		extend self
 
-		def initialize
-			@output = STDOUT
-		end
-
-		def info(message, event = nil)
-			return log("[INFO : atlas] #{message}") if event.nil?
-
-			log("[INFO : atlas] [#{event}] #{message}")
-		end
-
-		def log(messages)
-			Array(messages).each do |message|
-				@output.puts message
-			end
-		end
+		attr_accessor :logger
 	end
 end
