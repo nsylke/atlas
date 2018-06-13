@@ -2,7 +2,7 @@ module Atlas::Commands
     module Home
         extend Discordrb::Commands::CommandContainer
 
-        command([:home, :join]) do |event|
+        command([:home, :join, :support]) do |event|
             return if event.author.bot_account?
 
             event.author.pm('Atlas: https://discord.gg/67taXWN')
