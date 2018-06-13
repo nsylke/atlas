@@ -63,10 +63,6 @@ module Atlas
                 event.respond('An error occurred. Sending backtrace in private message.')
                 event.author.pm(e.backtrace)
             end
-        # when 'stats'
-        #     m = event.respond('Updating stats...');
-        #     Kernel.stats('https://discordbots.org/api/bots/212744072073314304/stats', CONFIG.tokens['discordbots_org'], BOT.servers.length)
-        #     m.edit('Updated stats.');
         when 'update'
             output = `git pull`
             if output.match? 'Already up-to-date'
