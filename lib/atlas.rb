@@ -4,12 +4,16 @@ require 'logger'
 require 'yaml'
 require 'mysql2'
 require 'time'
+require 'rest-client'
+require 'net/http'
+require 'json'
 
 require_relative 'ext/string'
 
 require_relative 'atlas/version'
 require_relative 'atlas/support/loggable'
 require_relative 'atlas/support/uptime'
+require_relative 'atlas/support/stats'
 require_relative 'atlas/config'
 require_relative 'atlas/logger'
 
@@ -33,6 +37,8 @@ module Atlas
     logger.debug "Started MySQL client."
 
     BOT = Discordrb::Commands::CommandBot.new(token: "Bot #{CONFIG.token}", client_id: CONFIG.client_id, prefix: CONFIG.prefix, parse_self: false, help_command: false, advanced_functionality: false)
+
+    STATS = Stats.new
 
     ### TODO: Clean this up
     Events.include!
@@ -67,6 +73,9 @@ module Atlas
                 event.respond('An error occurred. Sending backtrace in private message.')
                 event.author.pm(e.backtrace)
             end
+        when 'stats'
+            STATS.update
+            event.respond('Updated stats.')
         when 'update'
             output = `git pull`
             if output.match? 'Already up-to-date'
