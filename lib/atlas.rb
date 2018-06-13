@@ -40,6 +40,7 @@ module Atlas
     Commands.registerFunCommands!
     Commands.registerGeneralCommands!
     Commands.registerIntegrationCommands!
+    Commands.registerMiscellaneousCommands!
     Commands.registerModerationCommands!
     logger.info "Successfully loaded commands."
     ###

@@ -6,6 +6,7 @@ module Atlas
         Dir["#{File.dirname(__FILE__)}/commands/fun/*.rb"].each { |c| load c }
         Dir["#{File.dirname(__FILE__)}/commands/general/*.rb"].each { |c| load c }
         Dir["#{File.dirname(__FILE__)}/commands/integration/*.rb"].each { |c| load c }
+        Dir["#{File.dirname(__FILE__)}/commands/miscellaneous/*.rb"].each { |c| load c }
         Dir["#{File.dirname(__FILE__)}/commands/moderation/*.rb"].each { |c| load c }
 
         # Pre-register commands
@@ -22,7 +23,6 @@ module Atlas
             Reverse,
             RockPaperScissors,
             Roll,
-            Say,
             ThisOrThat,
             WouldYouRather,
             Zalgo
@@ -50,6 +50,10 @@ module Atlas
         @integration = [
             Urban,
             Xkcd
+        ]
+
+        @miscellaneous = [
+            Say
         ]
 
         @moderation = [
@@ -84,6 +88,14 @@ module Atlas
             end
 
             logger.debug "Registered #{@integration.count} integration commands."
+        end
+
+        def self.registerMiscellaneousCommands!
+            @miscellaneous.each do |c|
+                Atlas::BOT.include!(c)
+            end
+
+            logger.debug "Registered #{@miscellaneous.count} miscellaneous commands."
         end
 
         def self.registerModerationCommands!
