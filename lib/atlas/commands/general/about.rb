@@ -10,7 +10,7 @@ module Atlas::Commands
                 embed.add_field(name: 'Creator', value: 'Nick#4490', inline: true)
                 embed.add_field(name: 'Servers', value: Atlas::BOT.servers.length, inline: true)
                 embed.add_field(name: 'Users', value: Atlas::BOT.users.length, inline: true)
-                embed.add_field(name: 'Uptime', value: Kernel.uptime(short: true), inline: true)
+                embed.add_field(name: 'Uptime', value: Atlas::UPTIME.uptime, inline: true)
                 embed.add_field(name: 'OAuth Invite', value: '[Click here](https://discordapp.com/oauth2/authorize?&client_id=212744072073314304&scope=bot&permissions=268443670)', inline: true)
                 embed.add_field(name: 'Support Server', value: '[Click here](https://discord.gg/67taXWN)', inline: true)
                 embed.add_field(name: 'Version', value: Atlas::VERSION, inline: true)

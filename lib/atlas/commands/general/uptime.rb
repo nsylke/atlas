@@ -5,7 +5,7 @@ module Atlas::Commands
         command(:uptime) do |event|
             return if event.author.bot_account?
 
-            event.respond("Atlas has currently been up for #{Kernel.uptime}.")
+            event.respond("Atlas has currently been up for #{Atlas::UPTIME.uptime}.")
         end
     end
 end

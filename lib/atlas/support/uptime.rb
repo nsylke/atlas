@@ -12,7 +12,7 @@ module Atlas
 
 		private
 
-		def self.dhms
+		def dhms
 			seconds = (Time.now - @boot).to_i
 
 			days = seconds / 86400
@@ -24,7 +24,5 @@ module Atlas
 
 			["#{days}d", "#{hours}h", "#{minutes}m", "#{seconds}s"]
 		end
-
-		private_class_method :dhms
 	end
 end
