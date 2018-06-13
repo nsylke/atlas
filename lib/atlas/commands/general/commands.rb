@@ -5,6 +5,8 @@ module Atlas::Commands
         extend Discordrb::Commands::CommandContainer
 
         command([:commands, :cmds]) do |event, args|
+            return if event.author.bot_account?
+            
             if args.nil?
                 args = 1
             end
