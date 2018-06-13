@@ -7,6 +7,9 @@ module Atlas::Events
             Atlas::DATABASE.query("DELETE FROM servers WHERE id = '#{event.server.id}'")
             logger.debug "Deleted record in database."
         	logger.info "Atlas has left #{event.server.name}!"
+
+        	Atlas::STATS.update
+        	logger.debug "Updated stats on discordbots.org and discord.pw"
         end
     end
 end
