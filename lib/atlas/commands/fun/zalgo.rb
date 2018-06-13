@@ -3,6 +3,11 @@ module Atlas::Commands
 		extend Discordrb::Commands::CommandContainer
 
 		command(:zalgo) do |event, *args|
+			if args[0].nil?
+                event.respond('No arguments specified.')
+                break
+            end
+
 			args = args.join(' ')
 
 			event.respond translate(args)
