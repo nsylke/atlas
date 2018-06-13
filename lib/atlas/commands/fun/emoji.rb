@@ -3,6 +3,8 @@ module Atlas::Commands
 		extend Discordrb::Commands::CommandContainer
 
 		command(:emoji) do |event, emoji|
+			return if event.author.bot_account?
+
 			val = ''
 
 			if emoji
