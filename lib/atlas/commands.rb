@@ -43,7 +43,6 @@ module Atlas
             Suggestion,
             Unsubscribe,
             Uptime,
-            User,
             Version
         ]
 
@@ -67,6 +66,7 @@ module Atlas
 
         @utility = [
             Server,
+            User
         ]
 
         # Register commands
