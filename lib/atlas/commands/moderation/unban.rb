@@ -2,7 +2,7 @@ module Atlas::Commands
     module Unban
         extend Discordrb::Commands::CommandContainer
 
-        command(:unban) do |event|
+        command([:unban, :pardon]) do |event|
             return if event.author.bot_account?
 
             unless event.author.permission? :ban_members
