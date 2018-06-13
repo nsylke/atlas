@@ -1,87 +1,53 @@
 require 'discordrb'
+
+require 'logger'
 require 'yaml'
-require 'net/http'
-require 'uri'
-require 'json'
 require 'mysql2'
+require 'time'
 
 require_relative 'ext/string'
 
-module Kernel
-    @start_time = Time.now
+require_relative 'atlas/version'
+require_relative 'atlas/support/loggable'
+require_relative 'atlas/support/uptime'
+require_relative 'atlas/config'
+require_relative 'atlas/logger'
 
-    def uptime(short = false)
-        secs = (Time.now - @start_time).to_i
-        days = secs / 86400
-        secs -= days * 86400
-        hours = secs / 3600
-        secs -= hours * 3600
-        mins  = secs / 60
-        secs -= mins * 60
+require_relative 'integrations/urban'
+require_relative 'integrations/xkcd'
 
-        if short
-            "#{days}d, #{hours}h, #{mins}m, #{secs}s"
-        else
-            days = "#{days} day#{'s' unless days == 1}"
-            hours = "#{hours} hour#{'s' unless hours == 1}"
-            mins = "#{mins} minute#{'s' unless mins == 1}"
-            secs = "#{secs} second#{'s' unless secs == 1}"
-
-            "#{days}, #{hours}, #{mins} and #{secs}"
-        end
-    end
-
-    def stats(url, authorization, servers)
-        body = {}
-        body["server_count"] = servers
-
-        uri = URI.parse(url)
-        request = Net::HTTP::Post.new(uri)
-        request["Authorization"] = "#{authorization}"
-        request["Content-Type"] = 'application/json'
-        request.body = JSON.dump(body)
-
-        req_options = {
-            use_ssl: uri.scheme == 'https'
-        }
-
-        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-            http.request(request)
-        end
-    end
-end
+require_relative 'atlas/commands'
+require_relative 'atlas/events'
 
 module Atlas
-    # Load modules
-    Dir["#{File.dirname(__FILE__)}/atlas/*.rb"].each { |f| require_relative f }
-    Dir["#{File.dirname(__FILE__)}/integrations/*.rb"].each { |f| require_relative f }
+    UPTIME = Uptime.new
 
-    # Initialize logger
-    LOGGER = Logger.new
+    block_given? ? yield(AtlasLogger) : AtlasLogger
 
-    # Initialize config
-    CONFIG = Config.new 
+    include Loggable
 
-    # Initialize mysql2
+    CONFIG = Config.new
+    logger.debug "Loaded configuration file."
+
     DATABASE = Mysql2::Client.new(host: CONFIG.database['host'], database: CONFIG.database['name'], username: CONFIG.database['user'], password: CONFIG.database['pass'], reconnect: true)
+    logger.debug "Started MySQL client."
 
-    # Initialize bot
     BOT = Discordrb::Commands::CommandBot.new(token: "Bot #{CONFIG.token}", client_id: CONFIG.client_id, prefix: CONFIG.prefix, parse_self: false, help_command: false, advanced_functionality: false)
 
-    # Register events and commands
+    ### TODO: Clean this up
     Events.include!
     Commands.registerFunCommands!
     Commands.registerGeneralCommands!
     Commands.registerIntegrationCommands!
     Commands.registerModerationCommands!
+    ###
 
-    # Safe exit
     at_exit do
-        LOGGER.info('Exiting...') 
+        logger.info "Stopping instance of Atlas..."
         exit!
     end
 
-    # Safe command incase anything breaks.
+    ### TODO: Clean this up
     BOT.command(:sudo) do |event, *args|
         break unless event.user.id == 187342661060001792
 
@@ -97,10 +63,10 @@ module Atlas
                 event.respond('An error occurred. Sending backtrace in private message.')
                 event.author.pm(e.backtrace)
             end
-        when 'stats'
-            m = event.respond('Updating stats...');
-            Kernel.stats('https://discordbots.org/api/bots/212744072073314304/stats', CONFIG.tokens['discordbots_org'], BOT.servers.length)
-            m.edit('Updated stats.');
+        # when 'stats'
+        #     m = event.respond('Updating stats...');
+        #     Kernel.stats('https://discordbots.org/api/bots/212744072073314304/stats', CONFIG.tokens['discordbots_org'], BOT.servers.length)
+        #     m.edit('Updated stats.');
         when 'update'
             output = `git pull`
             if output.match? 'Already up-to-date'
@@ -123,7 +89,8 @@ module Atlas
             event.respond('Invalid command action.')
         end
     end
+    ###
 
-    # Start bot
+    logger.info "Starting instance of Atlas..."
     BOT.run
 end
