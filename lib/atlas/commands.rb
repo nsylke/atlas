@@ -3,12 +3,7 @@ module Atlas
         include Atlas::Loggable
 
         # Load all command files
-        Dir["#{File.dirname(__FILE__)}/commands/fun/*.rb"].each { |c| load c }
-        Dir["#{File.dirname(__FILE__)}/commands/general/*.rb"].each { |c| load c }
-        Dir["#{File.dirname(__FILE__)}/commands/integration/*.rb"].each { |c| load c }
-        Dir["#{File.dirname(__FILE__)}/commands/miscellaneous/*.rb"].each { |c| load c }
-        Dir["#{File.dirname(__FILE__)}/commands/moderation/*.rb"].each { |c| load c }
-        Dir["#{File.dirname(__FILE__)}/commands/utility/*.rb"].each { |c| load c }
+        Dir["#{File.dirname(__FILE__)}/commands/*/*.rb"].each { |c| load c }
 
         # Pre-register commands
         @fun = [
