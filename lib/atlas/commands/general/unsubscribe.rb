@@ -2,7 +2,7 @@ module Atlas::Commands
     module Unsubscribe
         extend Discordrb::Commands::CommandContainer
 
-        command(:unsubscribe) do |event|
+        command([:unsubscribe, :unsub]) do |event|
             return if event.author.bot_account?
             break unless event.server.id == 443426973025304576
 
