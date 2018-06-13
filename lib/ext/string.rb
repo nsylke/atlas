@@ -65,7 +65,7 @@ class String
 		}
 
 		self.split('').map do |parts|
-			alphabet.fetch parts.downcase.to_sym
+			alphabet[parts.downcase.to_sym]
 		end
 	end
 end
