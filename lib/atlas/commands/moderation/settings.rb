@@ -34,7 +34,7 @@ module Atlas::Commands
             nil
         end
 
-        command(:settings) do |event, *args|
+        command([:settings, :set]) do |event, *args|
             return if event.author.bot_account?
 
             break unless event.author.id == event.server.owner.id || event.author.id == 187342661060001792
