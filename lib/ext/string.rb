@@ -48,20 +48,20 @@ class String
 	        :u => :Uniform,
 	        :v => :Victor,
 	        :w => :Whiskey,
-	        :x => :"X-ray",
+	        :x => :'X-ray',
 	        :y => :Yankee,
 	        :z => :Zulu,
-	        :"1" => :One,
-	        :"2" => :Two,
-	        :"3" => :Three,
-	        :"4" => :Four,
-	        :"5" => :Five,
-	        :"6" => :Six,
-	        :"7" => :Seven,
-	        :"8" => :Eight,
-	        :"9" => :Nine,
-	        :"0" => :Zero,
-	        :" " => :""
+	        :'1' => :One,
+	        :'2' => :Two,
+	        :'3' => :Three,
+	        :'4' => :Four,
+	        :'5' => :Five,
+	        :'6' => :Six,
+	        :'7' => :Seven,
+	        :'8' => :Eight,
+	        :'9' => :Nine,
+	        :'0' => :Zero,
+	        :' ' => :''
 		}
 
 		self.split('').map do |parts|
