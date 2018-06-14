@@ -1,5 +1,5 @@
 class String
-	attr_reader :nato
+	attr_reader :emoji, :nato
 
 	def pluralize(count, value = nil)
 		value = 's' if value.nil?
@@ -11,6 +11,14 @@ class String
 		end
 
 		"#{count} #{word}"
+	end
+
+	def to_emojis
+		emoji_alphabet.tap do |parts|
+			@emoji = parts.join(' ')
+		end
+
+		@emoji
 	end
 
 	def to_nato
