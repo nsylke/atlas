@@ -2,7 +2,7 @@ module Atlas::Commands
     module Help
         extend Discordrb::Commands::CommandContainer
 
-        command([:help, :h, :'?']) do |event|
+        command([:help, :h, :'?'], usage: 'help', description: 'Displays general information about Atlas.') do |event|
             return if event.author.bot_account?
 
             prefix = Atlas::CONFIG.prefix
