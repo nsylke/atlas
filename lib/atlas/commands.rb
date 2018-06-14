@@ -10,6 +10,7 @@ module Atlas
             Choose,
             Eightball,
             Emoji,
+            Emojify,
             Faces,
             Flip,
             Jokes,

@@ -41,6 +41,7 @@ module Atlas::Commands
                 "doc [command]",
                 "8ball [question]",
                 "emoji <emoji>",
+                "emojify <message>",
                 "faces",
                 "flip",
                 "help",
