@@ -10,7 +10,7 @@ module Atlas::Commands
 
             author = event.author.on(event.server)
 
-            break unless author.role?(role)
+            return "You are not subscribed." unless author.role?(role)
 
             author.remove_role role
             event.respond('Successfully unsubscribed to Atlas announcements.')

@@ -10,7 +10,7 @@ module Atlas::Commands
 
             author = event.author.on(event.server)
 
-            break if author.role?(role)
+            return "You are already subscribed." if author.role?(role)
 
             author.add_role role
             event.respond('Successfully subscribed to Atlas announcements.')
