@@ -2,37 +2,30 @@ module Atlas::Commands
     module Settings
         extend Discordrb::Commands::CommandContainer
 
-        command(:test) do |event|
-            break unless event.author.id == 187342661060001792
+        # command(:test) do |event|
+        #     break unless event.author.id == 187342661060001792
 
-            message = event.respond("Welcome to Atlas's interactive setting command! What are you looking to do today?\n\nA. Edit a setting\nB. View a setting")
+        #     message = event.respond("Welcome to Atlas's interactive setting command! What are you looking to do today?\n\nA. Edit a setting\nB. View a setting")
             
-            LETTER_A = "\u{1f1e6}".freeze
-            LETTER_B = "\u{1f1e7}".freeze
+        #     response0 = event.message.await!(timeout: 3)
 
-            message.react LETTER_A
-            message.react LETTER_B
+        #     if response0
+        #         if response0.message.content == 'B'
+        #             Atlas::DATABASE.query("SELECT modlog_id FROM servers WHERE id = #{event.server.id}").each do |row|
+        #                 if row['modlog_id'].nil?
+        #                     message.edit("Uh oh! Looks like you haven't set a channel to modlog yet. Please rerun this command to do so.")
+        #                     return
+        #                 end
 
-            Atlas::BOT.add_await(:await_view, Discordrb::Events::ReactionAddEvent, emoji: LETTER_B) do |reaction|
-                message.delete_all_reactions
-
-                message.edit("Please type which setting you would like to see!\n\nA. modlog\nB. autorole")
-            end
-
-            message.await(/modlog/i) do |reaction2|
-                    Atlas::DATABASE.query("SELECT modlog_id FROM servers WHERE id = #{event.server.id}").each do |row|
-                        if row['modlog'].nil?
-                            message.edit("Uh oh! Looks like you haven't set a channel to modlog yet. Please rerun this command to do so.")
-                            return
-                        end
-
-                        message.edit("We found it! Moderation logs are being sent to <##{row['modlog']}>!")
-                    endy
-                end
-            end
-
-            nil
-        end
+        #                 message.edit("We found it! Moderation logs are being sent to <##{row['modlog_id']}>!")
+        #             end
+        #         else
+        #             message.edit("Action not found.")
+        #         end
+        #     else
+        #         message.edit("Response took too long, action canceled.")
+        #     end
+        # end
 
         command([:settings, :set]) do |event, *args|
             return if event.author.bot_account?
