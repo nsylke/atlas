@@ -16,7 +16,7 @@ module Atlas::Commands
                 embed.add_field(name: 'Version', value: Atlas::VERSION, inline: true)
                 embed.color = 344703
                 embed.footer = {
-                    icon_url: 'https://i.imgur.com/IFPVBZR.png',
+                    icon_url: Atlas::BOT.profile.avatar_url,
                     text: 'Atlas Support'
                 }
             end
