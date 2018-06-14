@@ -8,8 +8,8 @@ module Atlas::Events
         	logger.debug "Inserted new record into database."
         	logger.info "Atlas has joined #{event.server.name}!"
 
-        	Atlas::STATS.update
-        	logger.debug "Updated stats on discordbots.org and discord.pw"
+        	# Atlas::STATS.update
+        	# logger.debug "Updated stats on discordbots.org and discord.pw"
         end
     end
 end

@@ -8,8 +8,8 @@ module Atlas::Events
             logger.debug "Deleted record in database."
         	logger.info "Atlas has left #{event.server.name}!"
 
-        	Atlas::STATS.update
-        	logger.debug "Updated stats on discordbots.org and discord.pw"
+        	# Atlas::STATS.update
+        	# logger.debug "Updated stats on discordbots.org and discord.pw"
         end
     end
 end
