@@ -23,8 +23,7 @@ module Atlas::Commands
         			embed.add_field(name: 'Name', value: "#{name}", inline: true)
         			embed.add_field(name: 'Usage', value: "#{usage ? Atlas::CONFIG.prefix + usage : 'n/a'}", inline: true)
         			embed.add_field(name: 'Description', value: "#{command.attributes[:description] || 'No description available.'}", inline: false)
-                    return if parameters
-                    embed.add_field(name: 'Parameters', value: "#{parameters.join("\n")}", inline: false)
+                    embed.add_field(name: 'Parameters', value: "#{parameters.join("\n")}", inline: false) if parameters
                 end
         	end
         end
