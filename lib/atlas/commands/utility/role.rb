@@ -13,6 +13,7 @@ module Atlas::Commands
 
             event.channel.send_embed do |embed|
                 embed.title = role.name
+                embed.add_field name: 'ID', value: role.id, inline: true
                 embed.add_field name: 'Hoist', value: role.hoist, inline: true
                 embed.add_field name: 'Mentionable', value: role.mentionable, inline: true
                 embed.add_field name: 'Position', value: role.position, inline: true
