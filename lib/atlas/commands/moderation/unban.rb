@@ -22,35 +22,25 @@ module Atlas::Commands
                 return
             end
 
-            message = event.respond("Are you sure you want to unban #{user.distinct}?")
+            event.server.unban(user)
+            event.respond("Successfully unbanned #{user.distinct} from the server.")
 
-            event.user.await(/^(?:y(es)|n(o))$/i) do |answer|
-                output = answer.message.content.to_s
-                answer.message.delete
+            result = Atlas::DATABASE.query("SELECT modlog_id FROM servers WHERE id = #{event.server.id}")
+            result.each do |row|
+                return if row['modlog_id'].nil?
 
-                if output =~ /^(?:y(es))$/i
-                    message.edit("Successfully unbanned #{user.distinct} from the server.")
-                    event.server.unban(user)
+                channel = event.server.channels.find { |c| c.id == row['modlog_id'] }
 
-                    result = Atlas::DATABASE.query("SELECT modlog_id FROM servers WHERE id = #{event.server.id}")
+                return "The channel for modlog couldn't be found." if channel.nil?
 
-                    result.each do |row|
-                        break if row['modlog_id'].nil?
-                        
-                        channel = Atlas::BOT.server(event.server.id).channels.find { |c| c.id == row['modlog_id'] }
-
-                        channel.send_embed do |embed|
-                            embed.add_field(name: 'User', value: user.distinct, inline: true)
-                            embed.add_field(name: 'Action', value: 'Unban', inline: true)
-                            embed.color = 0xff0000
-                            embed.author = {
-                                icon_url: event.author.avatar_url,
-                                name: event.author.distinct
-                            }
-                        end
-                    end
-                else
-                    message.edit("Action canceled.")
+                channel.send_embed do |embed|
+                    embed.add_field name: 'User', value: user.distinct, inline: true
+                    embed.add_field name: 'Action', value: 'Unban', inline: true
+                    embed.color = 0xff0000
+                    embed.author = {
+                        icon_url: event.author.avatar_url,
+                        name: event.author.distinct
+                    }
                 end
             end
 
