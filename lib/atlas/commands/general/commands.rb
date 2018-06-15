@@ -40,6 +40,7 @@ module Atlas::Commands
                 "channel <channel>",
                 "choose <choice, choice>",
                 "docs [command]",
+                "donate",
                 "8ball [question]",
                 "emoji <emoji>",
                 "emojify <message>",
