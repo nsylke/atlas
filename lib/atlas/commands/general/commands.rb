@@ -57,6 +57,7 @@ module Atlas::Commands
                 "random [min] [max]",
                 "reverse <message>",
                 "rockpaperscissors",
+                "role <role>",
                 "roll <dice>",
                 "say <message>",
                 "server",
