@@ -51,7 +51,6 @@ module Atlas::Commands
                 "invite",
                 "jokes",
                 "kick <user> [reason]",
-                "kickall",
                 "lmgtfy <query>",
                 "nato <message>",
                 "ping",

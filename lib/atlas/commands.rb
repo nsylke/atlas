@@ -54,7 +54,6 @@ module Atlas
         @moderation = [
             Ban,
             Kick,
-            Kickall,
             Prune,
             Settings,
             Unban
