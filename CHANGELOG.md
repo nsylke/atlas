@@ -2,6 +2,40 @@
 
 This project is using [Semantic Versioning 2.0.0](http://semver.org/)
 
+## Atlas 2.6.0
+
+### Changes
+  * The `documentation` command works again, Woohoo!
+  * Added documentation to `help` command
+  * Added `String#to_emojis` and `String#emoji_alphabet` to String extension
+  * Added `emojify` command 
+  * Added `role` command
+  * Added `channel` command
+  * Changed `doc` to `docs` in commands list
+  * Added `donate` to commands list
+  * Removed `kickall` command
+  * [MySQL] Changed `id` to `varchar(18)` from `bigint(20)`
+  * [MySQL] Changed `modlog_id` to `varchar(18)` from `bigint(20)`
+  * [MySQL] Changed `autorole` to `varchar(18)` from `varchar(32)`
+
+### Fixes
+  * Disabled a test command that shouldn't be available
+  * `subscribe` and `unsubscribe` will respond if already (or not) subscribed
+  * `about` no longer shows blurple avatar
+  * Switched `String#nato_alphabet` from double quotes to single quotes
+  * `random` command no longer fails if the number is too large
+  * Fixed `user` command not responding if user had no roles
+  * Fixed `kick`, `ban` and `unban` command not adding to the modlog
+  * Fixed `kick` and `ban` command displaying wrong reason in modlog
+  * Fixed `kick` and `ban` command not kicking/banning if user has no roles
+
+### Optimizations
+  * Simplified command registration
+
+### Known caveats
+  * Disabled stats in `server_create` and `server_delete` event since it doesn't update
+
+
 ## Atlas 2.5.2
 
 ### Changes
@@ -21,6 +55,7 @@ This project is using [Semantic Versioning 2.0.0](http://semver.org/)
 ### Optimizations
   * Optimized `String#to_nato` to fastest fetch lookup
   * Load all commands at once instead of each category (still registered per category though)
+
 
 ## Atlas 2.5.0
 
