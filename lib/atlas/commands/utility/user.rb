@@ -23,6 +23,8 @@ module Atlas::Commands
                 nick = Atlas::BOT.member(event.server, user.id).nick
             end
 
+            roles = Atlas::BOT.member(event.server, user.id).roles
+
             event.channel.send_embed do |embed|
                 embed.thumbnail = { url: user.avatar_url }
                 embed.add_field name: 'Username', value: user.name, inline: true
@@ -33,7 +35,7 @@ module Atlas::Commands
                 embed.add_field name: 'Joined', value: Atlas::BOT.member(event.server, user.id).joined_at.strftime('%b %d, %Y'), inline: true
                 embed.add_field name: 'Status', value: user.status.capitalize, inline: true
                 embed.add_field name: 'Playing', value: game, inline: true
-                embed.add_field name: 'Roles', value: Atlas::BOT.member(event.server, user.id).roles.sort_by(&:position).reverse!.map(&:name).join(', '), inline: false
+                embed.add_field name: 'Roles', value: roles.sort_by(&:position).reverse!.map(&:name).join(', '), inline: false if !roles.empty?
             end
         end
     end
