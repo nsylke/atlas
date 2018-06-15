@@ -37,6 +37,7 @@ module Atlas::Commands
                 "about",
                 "ban <user> [reason]",
                 "commands",
+                "channel <channel>",
                 "choose <choice, choice>",
                 "doc [command]",
                 "8ball [question]",

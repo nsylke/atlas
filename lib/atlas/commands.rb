@@ -61,6 +61,7 @@ module Atlas
         ]
 
         @utility = [
+            Channel,
             Role,
             Server,
             User
