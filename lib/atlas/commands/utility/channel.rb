@@ -6,12 +6,12 @@ module Atlas::Commands
             return if event.author.bot_account?
 
             return "Please specify a channel." if args.nil?
-
-            # channel = event.bot.find_channel(args, event.server).first
+            
             # Type 4 is a category and causes issues with topic being blank
             channel = event.server.channels.find { |c| c.name == args && c.type != 4 }
+            channel = event.bot.find_channel(args, event.server.name).first if channel.nil?
 
-            return "Channel couldn't be found." if channel.nil?
+            return "Couldn't find channel." if channel.nil?
 
             event.channel.send_embed do |embed|
                 embed.title = channel.name
