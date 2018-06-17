@@ -3,20 +3,18 @@ module Atlas::Events
         extend Discordrb::EventContainer
 
         member_join do |event|
-            # break unless event.server.id == 443426973025304576
+            Atlas::DATABASE.query("SELECT autorole FROM servers WHERE id = #{event.server.id}").each do |row|
+                break if row['autorole'].nil?
 
-            # role = event.server.role(443485098722066432)
-            # event.user.add_role role
-            
-            # Atlas::DATABASE.query("SELECT autorole FROM servers WHERE id = #{event.server.id}").each do |row|
-            #     unless row['autorole'].nil?
-            #         break unless Atlas::BOT.member(event.server, Atlas::BOT.profile).permission? :manage_roles
-            #         id = row['autorole']
-            #         role = event.server.role(id)
-            #         break if event.user.role? role
-            #         event.user.add_role role
-            #     end
-            # end
+                id, name = row['autorole'].split('|')
+
+                role = event.server.role(id.to_i)
+                role = event.server.roles.find { |r| r.name == name.to_s }
+
+                break if role.nil?
+
+                event.user.add_role role
+            end
         end
     end
 end

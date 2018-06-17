@@ -59,13 +59,13 @@ module Atlas::Commands
                     end
 
                     role = event.server.roles.find { |r| r.id == args[2].to_i }
+                    role = event.server.roles.find { |r| r.name == args[2].to_s } if role.nil?
 
-                    if role.nil?
-                        event.respond('Invalid role id, please try again.')
-                        return
-                    end
+                    return "Invalid role, please try again." if role.nil?
 
-                    Atlas::DATABASE.query("UPDATE servers SET autorole = #{role.id} WHERE id = #{event.server.id}")
+                    query = "'#{role.id}|#{role.name}'"
+
+                    Atlas::DATABASE.query("UPDATE servers SET autorole = #{query} WHERE id = #{event.server.id}")
                     event.respond("Successfully updated autorole to #{role.name}.")
                 else
                     event.respond("That setting doesn't exist.")
@@ -94,7 +94,10 @@ module Atlas::Commands
                             return
                         end
 
-                        role = event.server.roles.find { |r| r.id == res['autorole'] }
+                        id, name = res['autorole'].split('|')
+
+                        role = event.server.roles.find { |r| r.id == id.to_i }
+                        role = event.server.roles.find { |r| r.name == name.to_s } if role.nil?
 
                         if role.nil?
                             event.respond("The current role for autorole doesn't exist anymore.")
