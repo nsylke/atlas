@@ -2,6 +2,12 @@
 
 This project is using [Semantic Versioning 2.0.0](http://semver.org/)
 
+## Atlas 2.7.1
+
+### Fixes
+  * Fixed `autorole` so it won't use fallback option every time
+
+
 ## Atlas 2.7.0
 
 ### Changes
@@ -23,6 +29,7 @@ This project is using [Semantic Versioning 2.0.0](http://semver.org/)
 ### Known caveats
   * Disabled stats in `server_create` and `server_delete` event since it doesn't update
   * Disabled `mention` event
+
 
 ## Atlas 2.6.0
 
