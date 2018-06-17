@@ -2,6 +2,28 @@
 
 This project is using [Semantic Versioning 2.0.0](http://semver.org/)
 
+## Atlas 2.7.0
+
+### Changes
+  * Alias `coin` for `flip` command
+  * Alias `purge` for `prune` command
+  * Added `creation_time` and `permissions` to `role` command
+  * Added `online_members` and `verification_level` to `server` command
+  * Added `roles` command for role management
+  * Added `duckduckgo` command for a temporary solution to DuckDuckGo integration
+  * Added `Integer#to_roman` to change numbers into roman numerals
+  * [MySQL] Changed `autorole` to `varchar(255)` from `varchar(32)`
+
+### Fixes
+  * Limited `members` in `role` command to 900 characters before being cut off
+  * The `autorole` works with some minor changes
+  * Reworked `autorole` setting to include a fallback
+  * If role had no users the `role` command wouldn't output anything
+
+### Known caveats
+  * Disabled stats in `server_create` and `server_delete` event since it doesn't update
+  * Disabled `mention` event
+
 ## Atlas 2.6.0
 
 ### Changes
