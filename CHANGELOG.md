@@ -2,6 +2,15 @@
 
 This project is using [Semantic Versioning 2.0.0](http://semver.org/)
 
+## Atlas 2.7.2
+
+### Fixes
+  * Fixed `roles` command from being executed by bots
+
+### Optimizations
+  * Tidy up `ban`, `kick`, `prune` and `unban` command
+
+
 ## Atlas 2.7.1
 
 ### Fixes
