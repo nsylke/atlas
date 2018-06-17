@@ -17,7 +17,8 @@ module Atlas::Commands
                 embed.add_field name: 'Hoist', value: role.hoist, inline: true
                 embed.add_field name: 'Mentionable', value: role.mentionable, inline: true
                 embed.add_field name: 'Position', value: role.position, inline: true
-                embed.add_field name: 'Members', value: role.members.map(&:name).join(', '), inline: false
+                embed.add_field name: 'Creation Time', value: role.creation_time.strftime("%b %d, %Y"), inline: true
+                embed.add_field name: 'Permissions', value: "#{role.permissions.bits} ([Calc](https://discordapi.com/permissions.html##{role.permissions.bits}))", inline: true
                 embed.color = role.color.combined
             end
         end
