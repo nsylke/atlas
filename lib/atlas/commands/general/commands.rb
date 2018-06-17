@@ -60,6 +60,7 @@ module Atlas::Commands
                 "rockpaperscissors",
                 "role <role>",
                 "roll <dice>",
+                "roman <number>",
                 "say <message>",
                 "server",
                 "servers",

@@ -19,6 +19,7 @@ module Atlas
             Reverse,
             RockPaperScissors,
             Roll,
+            Roman,
             ThisOrThat,
             WouldYouRather,
             Zalgo
