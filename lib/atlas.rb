@@ -9,6 +9,7 @@ require 'net/http'
 require 'json'
 
 require_relative 'ext/string'
+require_relative 'ext/integer'
 
 require_relative 'atlas/version'
 require_relative 'atlas/support/loggable'
