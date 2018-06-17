@@ -3,6 +3,7 @@ module Atlas::Commands
         extend Discordrb::Commands::CommandContainer
 
         command(:roles) do |event, *args|
+            return if event.author.bot_account?
             return "No arguments specified. Usage: `#{Atlas::CONFIG.prefix}roles <add/remove/list> [user] [role]`" if args.empty?
 
             case args[0]
