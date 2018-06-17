@@ -9,7 +9,7 @@ module Atlas::Events
                 id, name = row['autorole'].split('|')
 
                 role = event.server.role(id.to_i)
-                role = event.server.roles.find { |r| r.name == name.to_s }
+                role = event.server.roles.find { |r| r.name == name.to_s } if role.nil?
 
                 break if role.nil?
 
