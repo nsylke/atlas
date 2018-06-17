@@ -41,6 +41,7 @@ module Atlas::Commands
                 "choose <choice, choice>",
                 "docs [command]",
                 "donate",
+                "duckduckgo <query>",
                 "8ball [question]",
                 "emoji <emoji>",
                 "emojify <message>",

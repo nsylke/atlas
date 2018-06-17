@@ -43,6 +43,7 @@ module Atlas
         ]
 
         @integration = [
+            DuckDuckGo,
             Lmgtfy,
             Urban,
             Xkcd
