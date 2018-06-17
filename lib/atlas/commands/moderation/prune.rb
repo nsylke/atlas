@@ -2,7 +2,7 @@ module Atlas::Commands
 	module Prune
 		extend Discordrb::Commands::CommandContainer
 
-		command(:prune) do |event, args|
+		command([:prune, :purge]) do |event, args|
 			return if event.author.bot_account?
 
             unless event.author.permission? :manage_messages
