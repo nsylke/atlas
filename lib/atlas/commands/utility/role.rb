@@ -19,6 +19,7 @@ module Atlas::Commands
                 embed.add_field name: 'Position', value: role.position, inline: true
                 embed.add_field name: 'Creation Time', value: role.creation_time.strftime("%b %d, %Y"), inline: true
                 embed.add_field name: 'Permissions', value: "#{role.permissions.bits} ([Calc](https://discordapi.com/permissions.html##{role.permissions.bits}))", inline: true
+                embed.add_field name: 'Members', value: (!role.members.empty? ? role.members.map(&:name).join(', ')[0..900].gsub(/[^\w]\w+\s*$/, '...') : 'None'), inline: false
                 embed.color = role.color.combined
             end
         end
