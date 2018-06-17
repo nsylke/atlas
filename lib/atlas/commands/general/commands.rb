@@ -60,6 +60,7 @@ module Atlas::Commands
                 "reverse <message>",
                 "rockpaperscissors",
                 "role <role>",
+                "roles <add/remove/list> [user] [role]",
                 "roll <dice>",
                 "roman <number>",
                 "say <message>",

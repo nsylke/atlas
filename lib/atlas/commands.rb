@@ -57,6 +57,7 @@ module Atlas
             Ban,
             Kick,
             Prune,
+            Roles,
             Settings,
             Unban
         ]
