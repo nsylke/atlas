@@ -5,15 +5,8 @@ module Atlas::Commands
         command([:unban, :pardon]) do |event|
             return if event.author.bot_account?
 
-            unless event.author.permission? :ban_members
-                event.respond("You don't have permission to use this command.")
-                break
-            end
-
-            unless Atlas::BOT.member(event.server, Atlas::BOT.profile.id).permission? :ban_members
-                event.respond("Atlas doesn't have permission to ban members.")
-                break
-            end
+            return "You don't have permission to use this command." unless event.author.permission? :ban_members
+            return "Atlas doesn't have permission to ban members." unless event.bot.profile.on(event.server).permission? :ban_members
 
             user = event.message.mentions.first
 

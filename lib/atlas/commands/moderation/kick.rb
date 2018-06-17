@@ -5,15 +5,8 @@ module Atlas::Commands
         command(:kick) do |event, *args|
             return if event.author.bot_account?
 
-            unless event.author.permission? :kick_members
-                event.respond("You don't have permission to use this command.")
-                break
-            end
-
-            unless Atlas::BOT.member(event.server, Atlas::BOT.profile.id).permission? :kick_members
-                event.respond("Atlas doesn't have permission to kick members.")
-                break
-            end
+            return "You don't have permission to use this command." unless event.author.permission? :kick_members
+            return "Atlas doesn't have permission to kick members." unless event.bot.profile.on(event.server).permission? :kick_members
 
             args = args.join(' ').split(' ', 2)
             reason = args[1] || 'No reason specified.'
