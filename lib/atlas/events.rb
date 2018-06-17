@@ -8,7 +8,7 @@ module Atlas
         # Pre-register events
         @events = [
             MemberJoin,
-            Mention,
+            # Mention,
             Ready,
             ServerCreate,
             ServerDelete
