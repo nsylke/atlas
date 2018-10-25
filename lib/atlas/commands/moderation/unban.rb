@@ -8,12 +8,10 @@ module Atlas::Commands
             return "You don't have permission to use this command." unless event.author.permission? :ban_members
             return "Atlas doesn't have permission to ban members." unless event.bot.profile.on(event.server).permission? :ban_members
 
+            # Switch this from mentions to ID
             user = event.message.mentions.first
 
-            if user.nil?
-                event.respond('Please specify a user to be unbanned.')
-                return
-            end
+            return "User couldn't be found." if user.nil?
 
             event.server.unban(user)
             event.respond("Successfully unbanned #{user.distinct} from the server.")
