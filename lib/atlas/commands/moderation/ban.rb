@@ -13,22 +13,10 @@ module Atlas::Commands
 
             user = event.message.mentions.first
 
-            if user.nil?
-                event.respond('Please specify a user to be kicked.')
-                return
-            end
+            return "User couldn't be found." if user.nil?
 
-            if !Atlas::BOT.member(event.server, user.id).roles.empty?
-                if Atlas::BOT.member(event.server, user.id).roles.first.position >= Atlas::BOT.member(event.server, Atlas::BOT.profile.id).roles.first.position 
-                    event.respond('Atlas is not allowed to kick that person.')
-                    return 
-                end
-
-                if Atlas::BOT.member(event.server, user.id).roles.first.position >= event.author.roles.first.position
-                    event.respond('You are not allowed to kick that person.')
-                    return
-                end
-            end
+            return "Atlas is not allowed to ban that person." if Atlas::BOT.member(event.server, user.id).roles.first.position >= Atlas::BOT.member(event.server, Atlas::BOT.profile.id).roles.first.position
+            return "You are not allowed to ban that person" if Atlas::BOT.member(event.server, user.id).roles.first.position >= event.author.roles.first.position
 
             event.server.ban(user)
             event.respond("Successfully banned #{user.distinct} from the server.")
