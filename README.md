@@ -14,7 +14,7 @@ If you find a security vulnerability within Atlas, we ask that you report it res
 
 ## Created by
 
-- [Nicholas Sylke](https://github.com/nsylke) (Discord: Nick#4490)
+- [Nicholas Sylke](https://github.com/nsylke) (Discord: nsylke#4490)
 
 ## License
 
